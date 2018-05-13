@@ -8,6 +8,7 @@ import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
+		
 		File f = new File("input.txt");
 		int counter = 0;
 		Scanner s = new Scanner(f);
@@ -24,6 +25,7 @@ public class Main {
 		printComplexArr(complexArr);
 
 		result = buf.split(",");
+		
 		for (String str : result) {
 			String[] tempNoI = str.split("i");
 			String[] tempNums = tempNoI[0].split("\\+");
@@ -41,12 +43,12 @@ public class Main {
 		printComplexArr(complexArr);
 	}
 
-
+	
 	private static Complex.ComplexNumber[] RecFFT(int n, Complex.ComplexNumber[] complexArr) {
 		if (n == 1)
 			return new Complex.ComplexNumber[] { complexArr[0] };
 
-		if (n % 2 != 0) {
+		if (Integer.highestOneBit(n) != n) {
 			throw new IllegalArgumentException("n is not a power of 2");
 		}
 
@@ -66,13 +68,12 @@ public class Main {
 
 		// combine
 		Complex.ComplexNumber[] y = new Complex.ComplexNumber[n];
-		Complex.ComplexNumber w = new Complex.ComplexNumber(1,0);
+		
 		for (int k = 0; k < n / 2; k++) {
 			double kth = 2 * k * Math.PI / n;
 			Complex.ComplexNumber wk = new Complex.ComplexNumber(Math.cos(kth), Math.sin(kth));
 			y[k] = q[k].add(r[k].multiply(wk));
 			y[k + n / 2] = q[k].minus((r[k].multiply(wk)));
-			//w=w.multiply(wk);
 		}
 		return y;
 	}
@@ -82,5 +83,6 @@ public class Main {
 			System.out.println("	" + complexNumber);
 		}
 	}
+	
 
 }
