@@ -1,9 +1,9 @@
 import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.nio.Buffer;
+
 import java.util.Scanner;
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 
 public class Main {
 
@@ -42,6 +42,7 @@ public class Main {
 		fixResult ( n, complexArr);
 		System.out.println("after calculate:");
 		printComplexArr(complexArr);
+		s.close();
 	}
 	
 	private static void fixResult (int n, Complex.ComplexNumber[] complexArr) {
