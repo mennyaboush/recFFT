@@ -39,8 +39,17 @@ public class Main {
 		printComplexArr(complexArr);
 
 		complexArr = RecFFT(n, complexArr);
+		fixResult ( n, complexArr);
 		System.out.println("after calculate:");
 		printComplexArr(complexArr);
+	}
+	
+	private static void fixResult (int n, Complex.ComplexNumber[] complexArr) {
+		Complex.ComplexNumber half = new Complex.ComplexNumber(0.5,0);
+		
+		for(int i = 0; i < n; i++) {
+			complexArr[i] = complexArr[i].multiply(half);
+		}
 	}
 
 	
